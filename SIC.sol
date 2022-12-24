@@ -16,12 +16,12 @@ contract SICDemo is ERC721, Ownable {
     Counters.Counter private _tokenIdCounter;
 
     /// @dev Variables that are immutable and important to the contract.
-    uint256 private constant MAX_SUPPLY = 5; // 1000 Pieces
+    uint256 private constant MAX_SUPPLY = 1000; // 1000 Pieces
     uint256 private constant PRICE = 1 * (10**18); // 1 Unit
-    uint256 private constant PER_WALLET = 1; // 5 Per wallet
+    uint256 private constant PER_WALLET = 5; // 5 Per wallet
     uint256 private constant PERIOD = 12; // 12 Month period
-    uint256 private constant WAIT_PERIOD_TIMESTAMP = 2; // 5 Days timestamp (5 Days : 432000)
-    uint256 private constant PER_PERIOD_TIMESTAMP = 10; // 1 Month timestamp (1 Month : 2629743)
+    uint256 private constant WAIT_PERIOD_TIMESTAMP = 432000; // 5 Days timestamp (5 Days : 432000)
+    uint256 private constant PER_PERIOD_TIMESTAMP = 2629743; // 1 Month timestamp (1 Month : 2629743)
 
     /// @dev When the mint process is finished, these values ​​are assigned and the transactions are made according to these calculated values.
     uint256 private startTimestamp;
