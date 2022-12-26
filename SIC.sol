@@ -119,16 +119,24 @@ contract SICDemo is ERC721, Ownable {
     }
 
     /// @dev Returns the total number of investors (Total number of NFTs).
-    function getTotalInvestor() public view returns (uint256) {
+    function totalSupply() public view returns (uint256) {
         return _tokenIdCounter.current();
     }
 
     /// @dev Function that allows us to read the active period and total period of the contract.
-    function getStatus() public view returns (uint256, uint256) {
-        if (startTimestamp > 0) {
-            return (getActivePeriod(), PERIOD);
+    function getStatus() public view returns (uint256, uint256, bool) {
+        bool mintStatus;
+
+        if (mintStart && !mintFinish) {
+            mintStatus = true;
         } else {
-            return (0, PERIOD);
+            mintStatus = false;
+        }
+
+        if (startTimestamp > 0) {
+            return (getActivePeriod(), PERIOD, mintStatus);
+        } else {
+            return (0, PERIOD, mintStatus);
         }
     }
 
@@ -192,7 +200,7 @@ contract SICDemo is ERC721, Ownable {
     }
 
     /// @dev The function that the contract creator must run in order to activate the withdrawal process.
-    function withdrawStart() public onlyOwner {
+    function withdrawStart() public mintFinishTrue onlyOwner {
         if (block.timestamp < (startTimestamp + WAIT_PERIOD_TIMESTAMP))
             revert withdrawTimeError({
                 errorTime: (startTimestamp + WAIT_PERIOD_TIMESTAMP),
