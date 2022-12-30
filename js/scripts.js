@@ -2,7 +2,6 @@ const toastLiveExample = document.getElementById('liveToast')
 const toastMessage = document.getElementById('toast-message')
 
 function setNotification(message) {
-    console.log(message);
     if (message === 0) {
         toastMessage.innerHTML = "Please Wait! Transaction sent.";
     } else if (message.code) {
@@ -92,7 +91,6 @@ function connectMetamask() {
                     getContractData();
                 })
                 .catch((err) => {
-                    console.log(err);
                 })
 
         } else {
