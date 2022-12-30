@@ -41,7 +41,7 @@ const AVALANCE_TESTNET = {
 
 let isMetamask = false;
 let metamaskURL = "https://metamask.io/download/";
-let contractAddress = "0x3A69FEF1a69D758eDe5122AC5d30aC33d5Ad1C23";
+let contractAddress = "0x9394F583B7b283Fc19F009D2DECe3F6e4789d5A5";
 let nftPrice = 0.1;
 let account;
 let provider;
