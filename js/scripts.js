@@ -235,6 +235,7 @@ function mint() {
 
 function userGiveBackNFT() {
     let tokenId = document.getElementById("input-give-back-nft-id").value;
+    if (tokenId) {
     const signer = userProvider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     connContract.giveBackNFT(tokenId)
@@ -246,4 +247,7 @@ function userGiveBackNFT() {
         .catch((error) => {
             setNotification(error);
         })
+    } else {
+        setNotification("Please enter an nft id.")
+    }
 }
