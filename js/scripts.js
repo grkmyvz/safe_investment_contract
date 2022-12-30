@@ -45,6 +45,7 @@ let contractAddress = "0x9394F583B7b283Fc19F009D2DECe3F6e4789d5A5";
 let nftPrice = 0.1;
 let account;
 let provider;
+let userProvider;
 let contract;
 let abi;
 let isListenContract;
@@ -102,6 +103,7 @@ function connectMetamask() {
 
 function getContractData() {
     provider = new ethers.providers.JsonRpcProvider(activeChain.rpcUrls[0]);
+    userProvider = new ethers.providers.Web3Provider(window.ethereum);
     contract = new ethers.Contract(contractAddress, abi, provider);
     contract.getStatus().then((status) => {
         let mintStatus = document.getElementById("mint-status");
@@ -142,9 +144,8 @@ function getContractData() {
 }
 
 function listenContract() {
-    const signer = provider.getSigner();
-    const connContract = new ethers.Contract(contractAddress, abi, signer);
-    connContract.on('*', (event) => {
+    const listen = new ethers.Contract(contractAddress, abi, provider);
+    listen.on('*', (event) => {
         if (event.event == "safeMintEvent") {
             if (event.args[0].toLowerCase() == account.toLowerCase()) {
                 setNotification(`Congratulations. You minted ${parseInt(event.args[1]._hex, 16)}. nft.<br/><a href='${activeChain.blockExplorerUrls + 'tx/' + event.transactionHash}' target='_blank'>Click</a> to see the process.`)
@@ -172,7 +173,7 @@ if (isMetamask) {
 // Admin Functions
 
 function startMint() {
-    const signer = provider.getSigner();
+    const signer = userProvider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     connContract.startMint()
         .then((result) => {
@@ -186,7 +187,7 @@ function startMint() {
 }
 
 function finishMint() {
-    const signer = provider.getSigner();
+    const signer = userProvider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     connContract.finishMint()
         .then((result) => {
@@ -200,7 +201,7 @@ function finishMint() {
 }
 
 function withdrawMoney() {
-    const signer = provider.getSigner();
+    const signer = userProvider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     connContract.withdraw()
         .then((result) => {
@@ -217,7 +218,7 @@ function withdrawMoney() {
 
 function mint() {
     if (account) {
-    const signer = provider.getSigner();
+    const signer = userProvider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     let price = nftPrice * (10 ** 18)
     connContract.safeMint({ value: price.toString() })
@@ -236,7 +237,7 @@ function mint() {
 
 function userGiveBackNFT() {
     let tokenId = document.getElementById("input-give-back-nft-id").value;
-    const signer = provider.getSigner();
+    const signer = userProvider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     connContract.giveBackNFT(tokenId)
         .then((result) => {
