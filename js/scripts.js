@@ -215,6 +215,7 @@ function withdrawMoney() {
 // User Functions
 
 function mint() {
+    if (account) {
     const signer = provider.getSigner();
     const connContract = new ethers.Contract(contractAddress, abi, signer);
     let price = nftPrice * (10 ** 18)
@@ -227,6 +228,9 @@ function mint() {
         .catch((error) => {
             setNotification(error);
         });
+    } else {
+        setNotification("Please connect Metamask!");
+    }
 }
 
 function userGiveBackNFT() {
