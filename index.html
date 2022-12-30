@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="">
+  <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+  <meta name="generator" content="Hugo 0.108.0">
+  <title>Project Name - Safe Investment Contract</title>
+
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+  <link href="./css/styles.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <main>
+    <div class="container my-5">
+      <div id="user-alert" class="alert alert-success visually-hidden" role="alert">
+        <div class="row">
+          <div class="col-md-6">
+            <span id="welcome-message"></span>
+          </div>
+          <div class="col-md-3">
+            <div class="input-group input-group-sm float-end">
+              <input id="input-give-back-nft-id" type="text" class="form-control" placeholder="NFT ID"
+                aria-label="NFT ID" aria-describedby="give-back-nft-id">
+              <button class="btn btn-outline-primary" type="button" onClick="userGiveBackNFT()">Give Back NFT</button>
+            </div>
+          </div>
+          <div class="col-md-3 float-end">
+            <div class="dropdown float-end">
+              <a id="admin-dropbox" class="admin-menu visually-hidden" data-bs-toggle="dropdown" aria-expanded="false">
+                Admin Menu
+              </a>
+              <ul class="dropdown-menu">
+                <li><button class="dropdown-item" onClick="startMint()">Start Mint</button></li>
+                <li><button class="dropdown-item" onClick="finishMint()">Finish Mint</button></li>
+                <li><button class="dropdown-item" onClick="withdrawMoney()">Withdraw Money</button></li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row p-4 pb-0 pe-lg-0 pt-lg-5 align-items-center rounded-3 border shadow-lg">
+        <div class="col-lg-7 p-3 p-lg-5 pt-lg-3">
+          <h1 class="display-6 fw-bold">PROJECT NAME INVESTMENT</h1>
+          <p class="lead">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
+            aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum
+            dolore eu fugiat nulla pariatur.</p>
+          <div class="row m-3">
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item col-6">Mint Price</li>
+              <li class="list-group-item col-6">0.1 AVAX</li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item col-6">Investment Start Time</li>
+              <li class="list-group-item col-6">01/01/22 11:00 UTC</li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item col-6">Investment Finish Time</li>
+              <li class="list-group-item col-6">01/01/22 12:00 UTC</li>
+            </ul>
+            <ul class="list-group list-group-horizontal">
+              <li class="list-group-item col-6">Investment Period</li>
+              <li id="investment-period" class="list-group-item col-6">-</li>
+            </ul>
+          </div>
+          <div class="row m-3">
+            <div class="col-md-6">
+              <h5>Mint Status <span id="mint-status" class="badge"></span></h5>
+            </div>
+            <div class="col-md-6">
+              <h5>Total Supply <span id="total-supply" class="badge"></span></h5>
+            </div>
+          </div>
+          <div class="d-grid gap-2 d-md-flex justify-content-md-start mb-4 mb-lg-3">
+            <button id="metamask-button" type="button" class="btn btn-outline-primary" onClick="connectMetamask()">Wait
+              !</button>
+            <button type="button" class="btn btn-outline-success" onClick="mint()">Mint</button>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <img class="" src="./img/ticket.png" alt="">
+        </div>
+      </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="px-4 py-5 my-5 text-center">
+      <h1 class="display-5 fw-bold">What is PROJECT NAME ?</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has
+          been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type
+          and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into
+          electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of
+          Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus
+          PageMaker including versions of Lorem Ipsum.</p>
+        <div class="d-grid gap-2 d-sm-flex justify-content-sm-center">
+          <button type="button" class="btn btn-outline-primary">Project Whitepaper PDF</button>
+          <button type="button" class="btn btn-outline-primary">What is a Safe Investment Contract (SIC) ?</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="px-4 pt-5 my-5 text-center border-bottom">
+      <h1 class="display-4 fw-bold">Why Do We Need Investment?</h1>
+      <div class="col-lg-6 mx-auto">
+        <p class="lead mb-4">It is a long established fact that a reader will be distracted by the readable content of a
+          page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal
+          distribution of letters, as opposed to using 'Content here, content here', making it look like readable
+          English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model
+          text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have
+          evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).</p>
+      </div>
+      <div class="overflow-hidden" style="max-height: 30vh;">
+        <div class="container px-5">
+          <img src="./img/seminar.svg" class="img-fluid border rounded-3 shadow-lg mb-4" alt="Example image" width="600"
+            height="500" loading="lazy">
+        </div>
+      </div>
+    </div>
+
+    <div class="b-example-divider"></div>
+
+    <div class="bg-dark text-secondary px-4 py-5 text-center">
+      <div class="py-5">
+        <h1 class="display-5 fw-bold text-white">Contact</h1>
+        <div class="col-lg-6 mx-auto">
+          <p>mail@projectdomain.com</p>
+          <a href="#twitter">Twitter</a> - <a href="#discord">Discord</a> - <a href="#github">Github</a> - <a
+            href="#secondary-market">Secondary Market</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="toast-container position-fixed bottom-0 end-0 p-3">
+    <div id="liveToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
+      <div class="toast-header">
+        <strong class="me-auto">SIC Notification</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+      </div>
+      <div id="toast-message" class="toast-body">
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
+    crossorigin="anonymous"></script>
+  <script src="https://cdn.ethers.io/lib/ethers-5.2.umd.min.js" type="application/javascript"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="./js/scripts.js"></script>
+</body>
+
+</html>
