@@ -2,7 +2,6 @@ const toastLiveExample = document.getElementById('liveToast')
 const toastMessage = document.getElementById('toast-message')
 
 function setNotification(message) {
-
     if (message === 0) {
         toastMessage.innerHTML = "Please Wait! Transaction sent.";
     } else if (message.code) {
@@ -152,7 +151,7 @@ function listenContract() {
         } else if (event.event == "startMintEvent") {
             setNotification(`Mint is launched. Start time : ${parseInt(event.args['blockTime']._hex, 16)}`)
         } else if (event.event == "withdrawEvent") {
-            setNotification(`The money of the ${parseInt(event.args[2]._hex, 16)}. period, ${(parseInt(event.args[1]._hex, 16) / (10**18)).toFixed(2)} amount of money was withdrawn from the contract.`)
+            setNotification(`The money of the ${parseInt(event.args[2]._hex, 16)}. period, ${(parseInt(event.args[1]._hex, 16) / (10 ** 18)).toFixed(2)} amount of money was withdrawn from the contract.`)
         } else if (event.event == "finishMintEvent") {
             setNotification(`Mint is finished. Finish time : ${parseInt(event.args['blockTime']._hex, 16)}`)
         } else if (event.event == "giveBackNFTEvent") {
