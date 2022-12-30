@@ -100,7 +100,7 @@ function connectMetamask() {
 }
 
 function getContractData() {
-    provider = new ethers.providers.Web3Provider(window.ethereum);
+    provider = new ethers.providers.JsonRpcProvider(activeChain.rpcUrls);
     contract = new ethers.Contract(contractAddress, abi, provider);
     contract.getStatus().then((status) => {
         let mintStatus = document.getElementById("mint-status");
