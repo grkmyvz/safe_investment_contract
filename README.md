@@ -3,6 +3,8 @@
 
 > WARNING : Some tests have been done on the contract. But it is still not completely safe. I continue to work on it. It will be finalized soon and tested on the Avalanche testnet.
 
+### [Demo Web Page](https://safeinvestmentcontract.netlify.app/)
+
 ### Summary
 It is a contract created to protect and secure people's investments in projects. This contract, which has certain terms, aims to keep the funds safe. Thanks to this contract, the project owner will not be able to use all of the collected investment immediately. This contract, which has a withdrawal requirement for certain periods and a certain amount, aims to protect the investor.
 
